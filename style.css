@@ -4,6 +4,41 @@
     margin: 0;
 }
 
-table{
-    border: 2px solid 
+body{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    margin-top: 30px;
+    
+}
+
+table,th,td{
+    border: 1px solid black ;
+    border-collapse: collapse;
+}
+
+tr:nth-child(even) {
+    background-color: gray;
+  }
+
+/* table th{
+    width: 200px;
+} */
+
+
+
+
+#add-btn{
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 7px;
+    background-color:aquamarine;
+    font-weight: 700;
+}
+
+.delete{
+    background-color: rgb(241, 73, 73);
+    border-radius: 5px;
+    font-weight: 800;
+    padding: 5px;
 }
