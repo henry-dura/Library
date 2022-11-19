@@ -19,6 +19,10 @@ table,th,td{
     border: 1px solid black ;
     border-collapse: collapse;
     padding: 12px;
+    
+}
+th{
+    background-color:rgb(222, 220, 220);
 }
 
 

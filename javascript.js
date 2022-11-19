@@ -1,25 +1,13 @@
 const table = document.querySelector('table');
+const tableBody = document.querySelector('table > tbody');
 const addButton = document.querySelector('#add-btn');
 const submiter = document.querySelector('#submit');
 const deleteButton = document.querySelector('.delete');
 
 
-// const deleteButton = document.createElement('button');
-
-// deleteButton.innerText = 'DELETE';
-// deleteButton.classList.add('delete');
 
 
-
-let myLibrary = [
-    {
-        name: 'Half of the yellow son',
-        author: 'Chimamanda',
-    },
-
-    
-  
-];
+let myLibrary =[];
 
 function Book(name, author){
     this.book = book;
@@ -39,6 +27,7 @@ addButton.addEventListener('click', () =>{
 
 submiter.addEventListener('click',submitActions)
 
+// actions to be perfomed when submit button is clicked
 function submitActions(){
     const bookName = document.querySelector('#bookName');
     const author = document.querySelector('#author');
@@ -46,33 +35,26 @@ function submitActions(){
     if(bookName.value != '' && author.value != ''){
         
         myLibrary.push({name:bookName.value, author: author.value});
-
-        while(table.rows.length > 1) {
-            table.deleteRow(1);
-          }
-
         addBookToLibrary();
        
-        console.log(bookName.value);
-        console.log(author.value);
         document.querySelector('form').style.display = 'none';
         bookName.value = ''; author.value='';
         event.preventDefault();
     }
 
-   
-
-   
-
-
 }
 
 
 
-
+// loops through myLibrary array and display it in table. It first clears the table leaving only the heading.
 
 function addBookToLibrary(){
 
+    while(table.rows.length > 1) {
+        table.deleteRow(1);
+      }
+
+    
     for(let eachBookDetail of myLibrary){
 
         const row = table.insertRow(1);
@@ -81,17 +63,21 @@ function addBookToLibrary(){
         const cell3 = row.insertCell(2);
         cell1.innerHTML =eachBookDetail.name ;
         cell2.innerHTML = eachBookDetail.author;
-        cell3.innerHTML = '<button class="delete" onClick="deleting()"> DELETE</button>';
+        cell3.innerHTML = '<button class="delete" onClick="deleting(this)"> DELETE</button>';
     }
     
     
 }
 
+// delete button execution
+function  deleting(rowToDelete) {
+    let rowIndexOfButton = rowToDelete.parentNode.parentNode.rowIndex;
+    
+    myLibrary.splice( rowIndexOfButton-1, 1);
+    addBookToLibrary();
 
-function deleting(){
-    console.log('deleting');
+    console.log(`row index is ${rowIndexOfButton}`);
+    
 }
 
 
-addBookToLibrary();
-console.log(table.rows.length)
