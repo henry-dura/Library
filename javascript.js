@@ -4,20 +4,24 @@ const addButton = document.querySelector('#add-btn');
 const submiter = document.querySelector('#submit');
 const deleteButton = document.querySelector('.delete');
 
+console.log(tableBody)
 
 
 
-let myLibrary =[];
 
+let myLibrary = [
+    // {
+    //     name: 'Things fall Apart ',
+    //     author: 'Chinua Achebe'
+    // }
+];
+
+addBookToLibrary();
 function Book(name, author){
     this.book = book;
     this.author = author;
 
 }
-
-
-
-
 
 
 addButton.addEventListener('click', () =>{
@@ -54,9 +58,9 @@ function addBookToLibrary(){
         table.deleteRow(1);
       }
 
+    // table.children().remove();
     
     for(let eachBookDetail of myLibrary){
-
         const row = table.insertRow(1);
         const cell1 = row.insertCell(0);
         const cell2 = row.insertCell(1);
@@ -64,16 +68,16 @@ function addBookToLibrary(){
         cell1.innerHTML =eachBookDetail.name ;
         cell2.innerHTML = eachBookDetail.author;
         cell3.innerHTML = '<button class="delete" onClick="deleting(this)"> DELETE</button>';
-    }
-    
-    
+    } 
 }
+
 
 // delete button execution
 function  deleting(rowToDelete) {
     let rowIndexOfButton = rowToDelete.parentNode.parentNode.rowIndex;
     
     myLibrary.splice( rowIndexOfButton-1, 1);
+//    myLibrary =  myLibrary.filter( n => myLibrary.indexOf(n) !== rowIndexOfButton-1 )
     addBookToLibrary();
 
     console.log(`row index is ${rowIndexOfButton}`);
